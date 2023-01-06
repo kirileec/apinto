@@ -6,6 +6,7 @@ import (
 	"github.com/eolinker/apinto/application/auth/apikey"
 	"github.com/eolinker/apinto/application/auth/basic"
 	"github.com/eolinker/apinto/application/auth/jwt"
+	"github.com/eolinker/apinto/application/auth/moon"
 	"github.com/eolinker/apinto/drivers"
 	"github.com/eolinker/apinto/drivers/app/manager"
 	"github.com/eolinker/eosc/common/bean"
@@ -21,21 +22,21 @@ var (
 	ones       sync.Once
 )
 
-//Register 注册service_http驱动工厂
+// Register 注册service_http驱动工厂
 func Register(register eosc.IExtenderDriverRegister) {
 	register.RegisterExtenderDriver(name, NewFactory())
 }
 
-//NewFactory 创建service_http驱动工厂
+// NewFactory 创建service_http驱动工厂
 func NewFactory() eosc.IExtenderDriverFactory {
 	ones.Do(func() {
 		apikey.Register()
 		basic.Register()
 		aksk.Register()
 		jwt.Register()
+		moon.Register()
 		appManager = manager.NewManager(auth.Alias(), auth.Keys())
 		bean.Injection(&appManager)
 	})
 	return drivers.NewFactory[Config](Create)
 }
-
