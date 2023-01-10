@@ -33,7 +33,7 @@ func init() {
 }
 
 func main() {
-
+	log.SetLevel(log.DebugLevel)
 	if process.Run() {
 		log.Close()
 		return

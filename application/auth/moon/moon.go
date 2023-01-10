@@ -1,7 +1,6 @@
 package moon
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/eolinker/apinto/application"
 	http_service "github.com/eolinker/eosc/eocontext/http-context"
@@ -16,18 +15,13 @@ type moon struct {
 }
 
 func (a *moon) GetUser(ctx http_service.IHttpContext) (*application.UserInfo, bool) {
-	log.Error("moon plugin")
+
 	token, has := application.GetToken(ctx, "x-moon-ak", "query")
 	if !has || token == "" {
 		log.Error("no token")
 		return nil, false
 	}
 	url := ctx.Request().URI().RawURL()
-	log.Error(url)
-	log.Error(token)
-	bs, _ := json.Marshal(a.users.List())
-	log.Error(string(bs))
-
 	user, has := a.users.Get(token)
 
 	if has {
