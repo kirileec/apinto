@@ -18,4 +18,7 @@ then
 fi
 packageApp apinto $VERSION
 
+cd "$folder"
+docker build . -t harbor.160.kayicloud.com/linx/apinto:${VERSION}
+
 cd ${ORGPATH}
