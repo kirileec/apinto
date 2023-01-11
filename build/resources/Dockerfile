@@ -11,11 +11,7 @@ VOLUME /var/lib/apinto
 
 #设置环境变量
 ENV APP=apinto
-
-#解压网关程序压缩包
-COPY ./apinto.linux.x64.tar.gz /
-RUN tar -zxvf apinto.linux.x64.tar.gz && rm -rf apinto.linux.x64.tar.gz
-RUN yum install epel-release -y && yum install jq -y
+ADD ./* /apinto/
 
 #复制程序默认配置文件以及修改脚本权限
 RUN mkdir /etc/apinto
