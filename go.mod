@@ -21,6 +21,7 @@ require (
 	github.com/valyala/fasthttp v1.42.0
 	golang.org/x/crypto v0.1.0
 	golang.org/x/net v0.1.0
+	gopkg.in/resty.v1 v1.12.0
 )
 
 require (
@@ -110,4 +111,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-//replace github.com/eolinker/eosc => ../eosc
+replace github.com/eolinker/eosc => ../eosc

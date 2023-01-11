@@ -7,6 +7,7 @@ import (
 	"github.com/eolinker/apinto/application/auth/basic"
 	"github.com/eolinker/apinto/application/auth/jwt"
 	"github.com/eolinker/apinto/application/auth/moon"
+	"github.com/eolinker/apinto/application/auth/moon_remote"
 	"github.com/eolinker/apinto/drivers"
 	"github.com/eolinker/apinto/drivers/app/manager"
 	"github.com/eolinker/eosc/common/bean"
@@ -35,6 +36,7 @@ func NewFactory() eosc.IExtenderDriverFactory {
 		aksk.Register()
 		jwt.Register()
 		moon.Register()
+		moon_remote.Register()
 		appManager = manager.NewManager(auth.Alias(), auth.Keys())
 		bean.Injection(&appManager)
 	})
