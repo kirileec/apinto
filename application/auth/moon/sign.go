@@ -250,6 +250,11 @@ func (sv *SignVerify) GetSign(checkTimestamp bool) (*SignResult, error) {
 		mysign = s
 		urlValues.Del(sv.signField)
 	}
+
+	if s := urlValues.Get("x-moon-signmethod"); s != "" && s != "null" {
+		//mysign = s
+		urlValues.Del("x-moon-signmethod")
+	}
 	sk := sv.sk
 	toSign := sk + query_sort.UrlQueryToSortedKVString(urlValues) + sk
 	signed = signer.Sign(toSign)
